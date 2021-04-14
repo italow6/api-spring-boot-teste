@@ -1,0 +1,26 @@
+CREATE TABLE public.endereco (
+	id int NOT NULL,
+	cep int NULL,
+	logradouro varchar NOT NULL,
+	numero int NULL,
+	complemento varchar NOT NULL,
+	cidade varchar NOT NULL,
+	bairro varchar NOT NULL,
+	estado varchar NOT NULL,
+	lat varchar NULL,
+	long varchar NULL,
+	CONSTRAINT endereco_pk PRIMARY KEY (id)
+);
+
+CREATE TABLE public.cliente (
+	id int NOT NULL,
+	nome varchar NOT NULL,
+	cpf varchar NOT NULL,
+	id_endereco int NOT NULL,
+	email varchar NOT NULL,
+	senha varchar NOT NULL,
+	CONSTRAINT cliente_pk PRIMARY KEY (id),
+	CONSTRAINT cliente_cpf_un UNIQUE (cpf),
+	CONSTRAINT cliente_email_un UNIQUE (email),
+	CONSTRAINT cliente_fk FOREIGN KEY (id_endereco) REFERENCES public.endereco(id)
+);
