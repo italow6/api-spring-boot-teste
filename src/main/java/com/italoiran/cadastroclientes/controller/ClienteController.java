@@ -37,6 +37,16 @@ public class ClienteController {
 	           .orElse(ResponseEntity.notFound().build());
 	}
 	
+	@GetMapping(path = {"/email/{email}"})
+	public List<Cliente> listarPorEmail(@PathVariable String email){
+	   return clienteService.listarEmail(email);
+	}
+	
+	//@GetMapping(path = {"/cpf/{cpf}"})
+	//public List<Cliente> listarPorCPF(@PathVariable String cpf){
+	//   return clienteService.listarCPF(cpf);
+	//}	
+	
 	@PostMapping
 	public Cliente criar(@RequestBody Cliente cliente) {
 		return clienteService.criar(cliente);

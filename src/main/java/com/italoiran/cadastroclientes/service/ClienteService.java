@@ -35,6 +35,14 @@ public class ClienteService {
 		return this.clienteRepository.findById(id);
 	}
 	
+	public List<Cliente> listarEmail(String email) {
+		return this.clienteRepository.findByEmail(email);
+	}
+	
+	//public List<Cliente> listarCPF(String cpf) {
+	//	return this.clienteRepository.findByCPF(cpf);
+	//}
+	
 	public Cliente criar(Cliente cliente) {
 		enderecoService.criar(cliente.getEndereco()); 
 		return clienteRepository.save(cliente);
