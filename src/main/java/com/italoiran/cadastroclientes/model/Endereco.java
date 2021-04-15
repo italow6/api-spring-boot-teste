@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -12,7 +13,8 @@ import javax.persistence.Table;
 public class Endereco {
 		
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="endereco_sequence_generator")
+	@SequenceGenerator(name = "endereco_sequence_generator", sequenceName = "sq_endereco", allocationSize = 1)
 	private Long id;
 	
 	@Column(name = "cep", nullable = false)
@@ -29,6 +31,9 @@ public class Endereco {
 	
 	@Column(name = "logradouro", nullable = false) 
 	private String logradouro;
+	
+	@Column(name = "complemento", nullable = true) 
+	private String complemento;
 	
 	@Column(name = "numero", nullable = false) 
 	private int numero;

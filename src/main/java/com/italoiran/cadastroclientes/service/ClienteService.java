@@ -24,6 +24,7 @@ public class ClienteService {
 	@Autowired
 	private ClienteRepository clienteRepository;	
 	
+	@Autowired
 	private EnderecoService enderecoService;
 	
 	public List<Cliente> listarClientes(){
@@ -35,7 +36,7 @@ public class ClienteService {
 	}
 	
 	public Cliente criar(Cliente cliente) {
-		enderecoService.criar(cliente.getEndereco());
+		enderecoService.criar(cliente.getEndereco()); 
 		return clienteRepository.save(cliente);
 	}
 	

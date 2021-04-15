@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +15,8 @@ import javax.persistence.Table;
 public class Cliente {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO, generator="cliente_sequence_generator")
+	@SequenceGenerator(name = "cliente_sequence_generator", sequenceName = "sq_cliente", allocationSize = 1)
 	private Long id;
 	
 	@Column(name = "nome", nullable = false)
@@ -27,7 +29,7 @@ public class Cliente {
 	private String email;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_endereco", nullable = false)
+	@JoinColumn(name = "id_endereco", nullable = false, insertable = true)
 	private Endereco endereco;
 
 	public Long getId() {
